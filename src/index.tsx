@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-
+import { ToastContainer } from "react-toastify";
 import {
   init,
   AUTH_PROVIDER,
@@ -74,6 +74,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <ToastContainer limit={3} />
     </Provider>
   </React.StrictMode>
 );

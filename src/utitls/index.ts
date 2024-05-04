@@ -108,7 +108,7 @@ export const convertBalanceToWei = (strValue: string, iDecimal: string | number 
     return formatNumberBro(price, mantissa)
   }
 
-export const getClient = async () => {
+export const getClient = () => {
     const client = new Web3(new Web3.providers.HttpProvider(RPC))
     // this.clients.set(rpcUrl, client)
     return client

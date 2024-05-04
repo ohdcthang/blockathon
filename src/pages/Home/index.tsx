@@ -3,6 +3,8 @@ import { useCreateAccount } from '../../hooks'
 import { RootState } from '../../store'
 import { signOut } from '@ramper/viction'
 import { setWallet } from '../../redux/walletSlice'
+import { convertWeiToBalance, truncate } from '../../utitls'
+import { Header } from '../Header'
 
 const Home = () => {
   const { logIn } = useCreateAccount()
@@ -17,7 +19,8 @@ const Home = () => {
      }))
   }
 
-  const { address, email } = useSelector((state:RootState) => state.wallet)
+  const { address, email, balance } = useSelector((state:RootState) => state.wallet)
+  console.log("🚀 ~ Home ~ balance:", balance)
   // console.log("🚀 ~ Home ~ email:", email)
   // console.log("🚀 ~ Home ~ address:", address)
   // const user = getUser()
@@ -28,38 +31,21 @@ const Home = () => {
   return (
     <div className=''>``
       {/* HEADER */}
-      <header className='flex justify-between bg-background h-50 py-8 px-4 fixed top-0 right-0 left-0'>
-        <div>
-          <img className='w-20' src="/A2U.png" alt="" />
-        </div>
-        <div>
-          {
-            address ? (
-              <>
-                <p>{email}</p>
-                <p className='text-[12px] text-gray-700'>{address}</p>
-                <p className='text-[12px] text-primary cursor-pointer' onClick={logOut}>Log out</p>
-              </>
-              ): (
-               <button onClick={logIn} className='bg-primary text-white py-2 px-16 rounded-2xl'>Login</button>
-            )
-          }
-        </div>
-      </header>
+      <Header />
 
       {/* MAIN  */}
       <div style={{marginTop: '80px', marginBottom: '80px'}}>
-        <div className='grid grid-cols-4 gap-4 py-2 px-4  bg-background'>
-          <div className='gap-12'>
+        <div className='flex justify-between py-2 px-24  bg-background'>
+          <div className=''>
             <p className='text-[70px]'>
               Welcom to A2U
             </p>
           </div>
-          <div className='col-span-3 mt-8 w-full'>
-            <p className='mx-[300px]'>
+          <div className=' mt-8 w-full'>
+            <p className='ml-[200px]'>
               A2U will engage with digital fashion at its most compelling. Whether your interests lie in generative AI, 3d design & animation, XR, web3, digital luxury, gamification, avatars, next-gen supply chains, sustainability, new clienteling, digital twins, phygital fashion, or digitally influenced physical fashion, there will be conversations for you, along with much more.
             </p>
-            <div className='flex py-8 mx-[300px]'>
+            <div className='flex py-8 ml-[200px]'>
               <button className='outline py-2 px-4 rounded-2xl'>
                 Get invoke
               </button>
@@ -69,7 +55,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className='bg-background py-2 px-4 text-center grid grid-cols-3'>
+        <div className='bg-background py-2 px-24 text-center grid grid-cols-3'>
           <div>
             <p className='text-[150px]'>300</p>
             <p>Participants</p>
@@ -83,11 +69,11 @@ const Home = () => {
             <p>Participants</p>
           </div>
         </div>
-        <div className='bg-background py-2 px-4 '>
+        <div className='bg-background py-2 px-24 '>
           <p className='text-[200px] text-center'>SLIDER</p>
         </div>
 
-        <div className='bg-semiwhite  py-2 px-4 '>
+        <div className='bg-semiwhite  py-2 px-24 '>
           <div className=''>
             <p className='text-[70px]'>What's on the A2U?</p>
             <div className='flex'>
@@ -110,7 +96,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className='bg-semiwhite  py-2 px-4 '>
+        <div className='bg-semiwhite  py-2 px-24 '>
           <div className= ''>
             <p className='text-[70px]'>Events</p>
             <div className='grid grid-cols-3 gap-4 '>
@@ -249,7 +235,7 @@ const Home = () => {
         </div>
       </div>
       {/* FOOTER */}
-      <footer className='fixed bottom-0 left-0 right-0 p-4  bg-semiwhite h-50 flex justify-between'>
+      <footer className='fixed bottom-0 left-0 right-0 p-4 px-24  bg-semiwhite h-50 flex justify-between'>
         <div>
           <img className='w-20' src="/A2U.png" alt="" />
           <p>

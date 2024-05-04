@@ -1,14 +1,9 @@
 import {
-    init,
-    AUTH_PROVIDER,
-    CHAIN,
-    THEME,
-    WALLET_PROVIDER,
-    SUPPORTED_TOMO_NETWORKS,
-    signIn
+    signIn,
 } from '@ramper/viction'
 import { useDispatch } from 'react-redux'
 import { setWallet } from '../redux/walletSlice'
+import { getBalanceA2Y } from '../utitls'
 
 export const useCreateAccount =  () => {
     const dispatch = useDispatch()
@@ -16,12 +11,18 @@ export const useCreateAccount =  () => {
     const logIn = async () => {
          const signInResult = await signIn()
 
+         const address = signInResult.user?.wallets.tomo.publicKey
+
+         const balance = await getBalanceA2Y(address as string)
+
          dispatch(setWallet({
-            address: signInResult.user?.wallets.tomo.publicKey,
-            email: signInResult.user?.email
+            address,
+            email: signInResult.user?.email,
+            balance
          }))
 
          return signInResult
     }
+
     return {logIn}
 }

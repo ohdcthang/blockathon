@@ -12,6 +12,13 @@ import {
 } from '@ramper/viction'
 import { Provider } from 'react-redux';
 import { store } from './store';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from './pages/Home';
+import { BuyTicket } from './pages/Buy';
+
 
 init({
   appName: 'Viction Test App',
@@ -30,10 +37,24 @@ init({
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/buy-ticket",
+    element: <BuyTicket />,
+  }
+]);
+
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );

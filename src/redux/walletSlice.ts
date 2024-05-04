@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     email: '',
-    address: ''
+    address: '',
+    balance: '0',
 }
 
 export const walletSlice = createSlice({
@@ -12,6 +13,7 @@ export const walletSlice = createSlice({
       setWallet: (state, action) => {
         state.address = action.payload.address
         state.email = action.payload.email
+        state.balance = action.payload.balance
       },
     },
 })

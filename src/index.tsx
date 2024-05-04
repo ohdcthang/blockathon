@@ -4,12 +4,37 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {
+  init,
+  AUTH_PROVIDER,
+  SUPPORTED_TOMO_NETWORKS,
+  THEME
+} from '@ramper/viction'
+import { Provider } from 'react-redux';
+import { store } from './store';
+
+init({
+  appName: 'Viction Test App',
+  authProviders: [
+    AUTH_PROVIDER.GOOGLE,
+    AUTH_PROVIDER.FACEBOOK,
+    AUTH_PROVIDER.TWITTER,
+    AUTH_PROVIDER.APPLE,
+    AUTH_PROVIDER.EMAIL
+  ],
+  walletProviders: [],
+  network: SUPPORTED_TOMO_NETWORKS.MAINNET,
+  theme: THEME.DARK,
+})
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

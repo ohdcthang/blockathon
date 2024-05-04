@@ -13,7 +13,9 @@ export const useCreateAccount =  () => {
 
          const address = signInResult.user?.wallets.tomo.publicKey
 
+         
          const balance = await getBalanceA2Y(address as string)
+         if(address){ localStorage.setItem('account', JSON.stringify({address, balance}))}
 
          dispatch(setWallet({
             address,

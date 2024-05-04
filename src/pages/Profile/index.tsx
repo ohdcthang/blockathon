@@ -65,7 +65,7 @@ export const Profile = () => {
 
             <div className='px-24'>
             <Tabs aria-label="Default tabs" style="default">
-      <Tabs.Item active title="History" >
+      <Tabs.Item active title="Owned tickets" >
       <div className=''>
 
           <div className='flex justify-between'>
@@ -93,6 +93,85 @@ export const Profile = () => {
           </div>
 
         </div>
+      </Tabs.Item>
+      <Tabs.Item title="History" >
+       <div className='flex w-[30%]'>
+        <select className=" mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                <option >Game</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <select className="mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                <option >Status</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <select className="mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                <option >Lastest</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+       </div>
+       <table className="table-auto w-full mt-4 text-left">
+  <thead>
+    <tr>
+      <th>TNX ID</th>
+      <th>EVENT</th>
+      <th>TICKET</th>
+      <th>FROM</th>
+      <th>TO</th>
+      <th>PRICE</th>
+      <th>TIME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>8868...4994</td>
+      <td>8Hackathon Ninety Eight</td>
+      <td>tandard #764</td>
+      <td>8868...4994</td>
+      <td>8868...4994</td>
+      <td>+ 20 A2U</td>
+      <td>03/05/2024 
+        07:47 AM
+        </td>
+    </tr>
+    <tr>
+      <td>8868...4994</td>
+      <td>8Hackathon Ninety Eight</td>
+      <td>tandard #764</td>
+      <td>8868...4994</td>
+      <td>8868...4994</td>
+      <td>+ 20 A2U</td>
+      <td>03/05/2024 
+        07:47 AM
+        </td>
+    </tr> <tr>
+      <td>8868...4994</td>
+      <td>8Hackathon Ninety Eight</td>
+      <td>tandard #764</td>
+      <td>8868...4994</td>
+      <td>8868...4994</td>
+      <td>+ 20 A2U</td>
+      <td>03/05/2024 
+        07:47 AM
+        </td>
+    </tr> <tr>
+      <td>8868...4994</td>
+      <td>8Hackathon Ninety Eight</td>
+      <td>tandard #764</td>
+      <td>8868...4994</td>
+      <td>8868...4994</td>
+      <td>+ 20 A2U</td>
+      <td>03/05/2024 
+        07:47 AM
+        </td>
+    </tr>
+  </tbody>
+        </table>
       </Tabs.Item>
       <Tabs.Item title="Mission" >
         This is <span className="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</span>.

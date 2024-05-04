@@ -20,6 +20,7 @@ import { BuyTicket } from './pages/Buy';
 import { TicketDetail } from './pages/TicketDetail';
 import { Profile } from './pages/Profile';
 import Checkout from './pages/Checkout';
+import { Matketplace } from './pages/Maketplace';
 
 
 init({
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <Checkout />,
+  },
+  {
+    path: "/matketplace",
+    element: <Matketplace />,
   }
 ]);
 

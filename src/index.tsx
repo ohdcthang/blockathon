@@ -19,6 +19,7 @@ import {
 import Home from './pages/Home';
 import { BuyTicket } from './pages/Buy';
 import { TicketDetail } from './pages/TicketDetail';
+import { Profile } from './pages/Profile';
 
 
 init({
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
   {
     path: "/ticket",
     element: <TicketDetail />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   }
 ]);
 

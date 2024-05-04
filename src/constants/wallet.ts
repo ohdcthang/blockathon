@@ -1,2 +1,4 @@
 export const ADDRESS_TOKEN = '0x724615EDCFe2DDD64049469ff337A689780E021a'
+export const NFT_CONTRACT = '0x644766cEDDC745D891e2d6c29E66f48229983C83'
 export const RPC = 'https://rpc.tomochain.com'
+

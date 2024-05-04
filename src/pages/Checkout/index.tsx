@@ -1,7 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Header } from '../Header'
 
 const Checkout = () => {
+  const navigate = useNavigate()
+
   return (
     <div>
        <Header />
@@ -11,7 +15,7 @@ const Checkout = () => {
            <img src="/Frame 180.png" alt="" className='w-[1000px]'/>
           </div>
           <div className='col-span-2  ml-[100px]'>
-            <p className='text-[55px]'>Standard</p>
+            <p className='text-[55px]' style={{fontFamily: "DM Serif Display"}}>Hackathon Ninety Eight #234</p>
             <div className='flex justify-between py-4'>
               <p>Blockchain</p>
               <div className='flex items-center'>
@@ -42,8 +46,13 @@ const Checkout = () => {
               </div>
             </div>
             <div className='flex justify-center'>
-            <button className='py-4 px-12 border-2 border-primary rounded-2xl'>Cancel</button>
-            <button className='py-4 px-12 border-2 border-primary rounded-2xl bg-primary text-white ml-8' >Confirm</button>
+            <button onClick={() => navigate(-1)} className='py-4 px-12 border-2 border-primary rounded-2xl'>Cancel</button>
+            <button onClick={() => {
+              toast('Buy successfully',{
+                type: 'success'
+              })
+              navigate('/')
+            }} className='py-4 px-12 border-2 border-primary rounded-2xl bg-primary text-white ml-8' >Confirm</button>
           </div>
           </div>
           

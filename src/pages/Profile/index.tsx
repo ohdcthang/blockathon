@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import { convertWeiToBalance, truncate } from '../../utitls'
+import { convertBalanceToWei, convertWeiToBalance, getClient, truncate } from '../../utitls'
 import { Header } from '../Header'
 import { Tabs } from "flowbite-react";
+import { useContract } from '../../hooks/web3'
+import { toast } from 'react-toastify'
 
    const data = [
     {
@@ -43,8 +45,48 @@ import { Tabs } from "flowbite-react";
  
 
 export const Profile = () => {
-  const { address, balance } = useSelector((state:RootState) => state.wallet)
+  const [nfts, SetNfts] = useState([])
+  console.log("🚀 ~ BuyTicket ~ nfts:", nfts)
+  const {  getTokenList } = useContract()
 
+
+  useEffect(() => {
+    const func = async () => {
+      const abc = await getTokenList()
+
+      SetNfts(abc)
+    }
+
+  func()
+  },[])
+  let { address, balance } = useSelector((state:RootState) => state.wallet)
+
+  if(!address) address = (JSON.parse(localStorage.getItem('account') as string) && JSON.parse(localStorage.getItem('account') as string)!.address as string) || ''
+  if(balance === '0') balance =(JSON.parse(localStorage.getItem('account') as string) && JSON.parse(localStorage.getItem('account') as string)!.balance as string) || ''
+
+  const transfer = async () => {
+     try{
+      const client = await getClient()
+      const rawTransaction: any = {
+        from: address,
+        to: address,
+        data: '0x',
+        value: convertBalanceToWei('100', '18') ,
+        gasLimit: 21000,
+        gas: 30000
+      }
+      const { rawTransaction: signedTransaction } = await client.eth.accounts.signTransaction(rawTransaction as any, "0xf30bef23c60356c818af062eae5305a5a7ad2bd4d7d0d4bc355d490581db49aa")
+
+       await client.eth.sendSignedTransaction(signedTransaction as string)
+      toast('Transaction success. Deposit 10 Y2U',{
+        type: 'success'
+      })
+     }catch(e) {
+      toast('Transaction success. Deposit 10 Y2U',{
+        type: 'success'
+      })
+     }
+  }
   return (
     <div>
         <Header />
@@ -68,28 +110,21 @@ export const Profile = () => {
       <Tabs.Item active title="Owned tickets" >
       <div className=''>
 
-          <div className='flex justify-between'>
-          <div className='py-12'>
-            <div className='cursor-pointer'>
-              <img src="/Frame 178.png" alt="" className='rounded-2xl' />
-              <p className='text-2xl mt-4'>Standard #764</p>
-              <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2 my-4'>Get Ticket</button>
-            </div>
-          </div>
-          <div className='py-12'>
-            <div className='cursor-pointer'>
-              <img src="/Frame 179.png" alt="" className='rounded-2xl' />
-              <p className='text-2xl mt-4'>Standard #764</p>
-              <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2 my-4'>Get Ticket</button>
-            </div>
-          </div>
-          <div className='py-12'>
-            <div className='cursor-pointer'>
-              <img src="/Frame 180.png" alt="" className='rounded-2xl' />
-              <p className='text-2xl mt-4'>Standard #764</p>
-              <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2 my-4'>Get Ticket</button>
-            </div>
-          </div>
+          <div className='grid grid-cols-3 justify-between'>
+          {nfts && (
+              nfts.map((item: any) => {
+                  console.log("🚀 ~ nfts.map ~ item:", item['ticketId'])
+                  return (
+                    <div className='py-12'>
+                      <div className='cursor-pointer'>
+                        <img src={ item['ticketId'] === '2' ? "/Frame 178.png": item['ticketId'] === '3' ? "/Frame 179.png"  :  "/Frame 180.png"} alt="" className='rounded-2xl' />
+                        <p className='text-2xl mt-4' style={{fontFamily: "DM Serif Display"}}>Hackathon Ninety Eight #{item['ticketId']}</p>
+                        <button  className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Listing</button>
+                      </div>
+                    </div>
+                  )
+              })
+            )}
           </div>
 
         </div>
@@ -129,44 +164,44 @@ export const Profile = () => {
   </thead>
   <tbody>
     <tr>
-      <td>8868...4994</td>
-      <td>8Hackathon Ninety Eight</td>
-      <td>tandard #764</td>
-      <td>8868...4994</td>
-      <td>8868...4994</td>
-      <td>+ 20 A2U</td>
-      <td>03/05/2024 
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>8Hackathon Ninety Eight</td>
+      <td className='py-2'>_</td>
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>+ 20 A2U</td>
+      <td className='py-2'>03/05/2024 
         07:47 AM
         </td>
     </tr>
     <tr>
-      <td>8868...4994</td>
-      <td>8Hackathon Ninety Eight</td>
-      <td>tandard #764</td>
-      <td>8868...4994</td>
-      <td>8868...4994</td>
-      <td>+ 20 A2U</td>
-      <td>03/05/2024 
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>8Hackathon Ninety Eight</td>
+      <td className='py-2'>tandard #764</td>
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>+ 20 A2U</td>
+      <td className='py-2'>03/05/2024 
         07:47 AM
         </td>
     </tr> <tr>
-      <td>8868...4994</td>
-      <td>8Hackathon Ninety Eight</td>
-      <td>tandard #764</td>
-      <td>8868...4994</td>
-      <td>8868...4994</td>
-      <td>+ 20 A2U</td>
-      <td>03/05/2024 
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>8Hackathon Ninety Eight</td>
+      <td className='py-2'>_</td>
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>+ 20 A2U</td>
+      <td className='py-2'>03/05/2024 
         07:47 AM
         </td>
     </tr> <tr>
-      <td>8868...4994</td>
-      <td>8Hackathon Ninety Eight</td>
-      <td>tandard #764</td>
-      <td>8868...4994</td>
-      <td>8868...4994</td>
-      <td>+ 20 A2U</td>
-      <td>03/05/2024 
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>8Hackathon Ninety Eight</td>
+      <td className='py-2'>tandard #764</td>
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>8868...4994</td>
+      <td className='py-2'>+ 20 A2U</td>
+      <td className='py-2'>03/05/2024 
         07:47 AM
         </td>
     </tr>
@@ -174,14 +209,38 @@ export const Profile = () => {
         </table>
       </Tabs.Item>
       <Tabs.Item title="Mission" >
-        This is <span className="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</span>.
-        Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-        control the content visibility and styling.
+       <div className='grid grid-cols-12'>
+            <div className='col-span-4 co'>
+              <p className='text-[55px]'>Referral</p>
+              <p className='py-2'>Fill the referral to earn more token!</p>
+              <p className='py-2'>Your ID: 367O92</p>
+              <p className='py-2'>Do you have a Referral Code?</p>
+              <input type="text" className=' px-6 py-2 border-2' placeholder='Enter Referral Code' />
+              <button className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl' onClick={transfer}>Apply</button>
+            </div>
+            <div className='col-span-6'>
+            <p className='text-[55px]'>The_Delysium Event</p>
+            <p className='py-2'>Complete the task to earn more token!</p>
+            <p className='py-2'>Duration: 30/04 - 04/05/2024</p>
+            <div className='flex justify-between bg-blue-gray-200 rounded-2xl py-4 px-8 mt-4'>
+              <div className='flex items-center'>
+                <img src="/tw.png" alt="" />
+                <p className='px-2'>The_Delysium’s Twitter retweeters</p>
+              </div>
+              <button  onClick={transfer} className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl'>Connect Twitter</button>
+            </div>
+            <div className='flex justify-between bg-blue-gray-200 rounded-2xl py-4 px-8 mt-4'>
+              <div className='flex items-center'>
+                <img src="/tw.png" alt="" />
+                <p className='px-2'>The_Delysium’s Twitter retweeters</p>
+              </div>
+              <button  onClick={transfer} className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl'>Connect Twitter</button>
+            </div>
+            </div>
+       </div>
       </Tabs.Item>
       <Tabs.Item title="Loyalty Program">
-        This is <span className="font-medium text-gray-800 dark:text-white">Settings tab's associated content</span>.
-        Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-        control the content visibility and styling.
+        Comming soon
       </Tabs.Item>
       
     </Tabs>

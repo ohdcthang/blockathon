@@ -1,3 +1,5 @@
+import converter from 'hex2dec'
+import BigDecimal from 'js-big-decimal'
 import Web3 from "web3"
 import { ERC20Abi } from "../abi"
 import numeral from 'numbro'
@@ -121,4 +123,9 @@ export const getBalanceA2Y = async (address: string) => {
     const balance = await contract.methods.balanceOf(address).call()
 
     return balance
+}
+
+
+export const convertDecimalToHex = (number: any) => {
+  return converter.decToHex(new BigDecimal(parseFloat(number)).getValue()) as string
 }

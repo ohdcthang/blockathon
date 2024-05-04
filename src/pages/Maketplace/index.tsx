@@ -63,7 +63,7 @@ export const Matketplace = () => {
      <div className='cursor-pointer'>
        <img src="/Frame 178.png" alt="" className='rounded-2xl' />
        <p className='text-2xl mt-4'>Vip</p>
-       <p className='text-[32px]'>20 A2Y</p>
+       <p className='text-[32px]'>20 A2U</p>
        <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Get Ticket</button>
      </div>
    </div>
@@ -71,7 +71,7 @@ export const Matketplace = () => {
      <div className='cursor-pointer'>
        <img src="/Frame 179.png" alt="" className='rounded-2xl' />
        <p className='text-2xl mt-4'>Premium</p>
-       <p className='text-[32px]'>20 A2Y</p>
+       <p className='text-[32px]'>20 A2U</p>
        <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Get Ticket</button>
      </div>
    </div>
@@ -79,7 +79,7 @@ export const Matketplace = () => {
      <div className='cursor-pointer'>
        <img src="/Frame 180.png" alt="" className='rounded-2xl' />
        <p className='text-2xl mt-4'>Standard</p>
-       <p className='text-[32px]'>20 A2Y</p>
+       <p className='text-[32px]'>20 A2U</p>
        <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Get Ticket</button>
      </div>
    </div>
@@ -87,7 +87,7 @@ export const Matketplace = () => {
      <div className='cursor-pointer'>
        <img src="/Frame 178.png" alt="" className='rounded-2xl' />
        <p className='text-2xl mt-4'>Vip</p>
-       <p className='text-[32px]'>20 A2Y</p>
+       <p className='text-[32px]'>20 A2U</p>
        <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Get Ticket</button>
      </div>
    </div>
@@ -95,7 +95,7 @@ export const Matketplace = () => {
      <div className='cursor-pointer'>
        <img src="/Frame 179.png" alt="" className='rounded-2xl' />
        <p className='text-2xl mt-4'>Premium</p>
-       <p className='text-[32px]'>20 A2Y</p>
+       <p className='text-[32px]'>20 A2U</p>
        <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Get Ticket</button>
      </div>
    </div>
@@ -103,7 +103,7 @@ export const Matketplace = () => {
      <div className='cursor-pointer'>
        <img src="/Frame 180.png" alt="" className='rounded-2xl' />
        <p className='text-2xl mt-4'>Standard</p>
-       <p className='text-[32px]'>20 A2Y</p>
+       <p className='text-[32px]'>20 A2U</p>
        <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Get Ticket</button>
      </div>
    </div>

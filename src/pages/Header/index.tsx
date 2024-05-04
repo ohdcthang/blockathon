@@ -43,6 +43,8 @@ export const Header = () => {
      localStorage.clear()
   }
 
+  
+
   let { address, email, balance } = useSelector((state:RootState) => state.wallet)
   console.log("🚀 ~ Header ~ balance:", balance)
 
@@ -57,14 +59,26 @@ export const Header = () => {
         }}>
           <img className='w-20' src="/A2U.png" alt="" />
         </div>
-        <div className='text-right'>
-          <p>Matketplace</p>
+        <div className='text-right cursor-pointer font-semibold' onClick={() => {
+          navigate('/buy-ticket')
+        }}>
+          <p>Buy ticket</p>
         </div>
-        <div className='text-right'>
-          <p>Matketplace</p>
-        </div>  <div className='text-right'>
-          <p>Matketplace</p>
+        <div className='text-right cursor-pointer font-semibold' onClick={() => {
+          navigate('/buy-ticket')
+        }}>
+          <p>Martketplace</p>
         </div>
+        <div className='text-right cursor-pointer font-semibold' onClick={() => {
+          navigate('/profile')
+        }}>
+          <p>Profile</p>
+        </div>
+        {/* <div className='text-right cursor-pointer'>
+          <p>Matketplace</p>
+        </div>  <div className='text-right cursor-pointer'>
+          <p>Matketplace</p>
+        </div> */}
         <div>
           {
             address ? (
@@ -88,43 +102,7 @@ export const Header = () => {
               <div className="origin-top-right absolute right-20 mt-2 w-[265px] rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5">
 
               <ul role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <li>
-                                <a
-                                    href="#"
-                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    onClick={() => setOpen(false)}
-                                >
-                                   My Assets
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    onClick={() => setOpen(false)}
-                                >
-                                  History
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    onClick={() => setOpen(false)}
-                                >
-                                    Mission
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    onClick={() => setOpen(false)}
-                                >
-                                    Loyalty Program
-                                </a>
-                            </li>
-
+                            
                             <li>
                                 <a
                                     href="#"

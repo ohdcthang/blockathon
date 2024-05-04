@@ -37,10 +37,10 @@ const Home = () => {
 
       {/* MAIN  */}
       <div style={{marginTop: '80px', marginBottom: '80px'}}>
-        <div className='flex justify-between py-2 px-24  bg-background'>
+        <div className='flex justify-between py-12 px-24  bg-background'>
           <div className=''>
-            <p className='text-[70px]'>
-              Welcom to A2U
+            <p className='text-[70px]' style={{fontFamily: "DM Serif Display"}}>
+            Welcome to ART TO YOU
             </p>
           </div>
           <div className=' mt-8 w-full'>
@@ -59,77 +59,77 @@ const Home = () => {
         </div>
         <div className='bg-background py-2 px-24 text-center grid grid-cols-3'>
           <div>
-            <p className='text-[150px]'>300</p>
-            <p>Participants</p>
+            <p className='text-[70px]' style={{fontFamily: "DM Serif Display"}}>300</p>
+            <p className='font-semibold'>Participants</p>
           </div>
           <div>
-            <p className='text-[150px]'>300</p>
-            <p>Participants</p>
+            <p className='text-[70px]' style={{fontFamily: "DM Serif Display"}}>30</p>
+            <p className='font-semibold'>Events</p>
           </div>
           <div>
-            <p className='text-[150px]'>300</p>
-            <p>Participants</p>
+            <p className='text-[70px]' style={{fontFamily: "DM Serif Display"}}>1000M</p>
+            <p className='font-semibold'>Total Supply</p>
           </div>
         </div>
-        <div className='bg-background py-2 '>
-          <img src="Frame 180.png " className='w-full h-[500px]' />
+        <div className='bg-background pt-12'>
+          <img src="1.png " className='w-full h-[500px]' />
         </div>
 
         <div className='bg-semiwhite  py-2 px-24 '>
-          <div className=''>
-            <p className='text-[70px]'>What's on the A2U?</p>
-            <div className='flex'>
-              <img className='w-[500px] h-[500px]' src="https://upload.wikimedia.org/wikipedia/vi/c/cc/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2016-11-01_%EC%98%A4%EC%A0%84_12.10.11%281%29.png" alt="" />
-              <div className='text-center w-full mx-[200px]'>
-                <p className='border bottom-3 border-black rounded-2xl py-2 px-2'>
-                Lorem ipsum 
+          <div >
+            <p className='text-[70px]' style={{fontFamily: "DM Serif Display"}}>What's on the A2U?</p>
+            <div className='flex text-right'>
+              <img className='w-[800px] h-[800px]' src="/banner4.png" alt="" />
+              <div className='text-center w-full ml-5'>
+                <p className='text-[30px] border bottom-3 border-black rounded-2xl py-2 px-2' style={{fontFamily: "DM Serif Display"}}>
+                Exchange A2U token
                 </p>
                 <p className='border my-20 bottom-3 border-black rounded-2xl py-2 px-2'>
-                  <p>Lorem ipsum </p>
+                  <p style={{fontFamily: "DM Serif Display"}} className="text-[30px]">Exclusive benefits </p>
                   <span>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                   </span>
                 </p>
-                <p className='border bottom-3 border-black rounded-2xl py-2 px-2'>
-                  Lorem ipsum 
+                <p className=' text-[30px] border bottom-3 border-black rounded-2xl py-2 px-2' style={{fontFamily: "DM Serif Display"}}>
+                  Manage your “own" tickets
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className='bg-semiwhite  py-2 px-24 '>
+        <div className='bg-semiwhite  py-12 px-24 '>
           <div className= ''>
-            <p className='text-[70px]'>Events</p>
-            <div className='grid grid-cols-3 gap-4 '>
-              <div>
-                <p className='border bottom-3 border-black bg-secondary rounded-2xl py-2 px-4 mt-4 flex justify-between'>
-                  <p className='text-2xl font-bold'>JUNE</p> 
+            <p className='text-[70px]' style={{fontFamily: "DM Serif Display"}}>Events</p>
+            <div className='grid grid-cols-4 gap-4 '>
+              <div className='col-span-1'>
+                <p className='border bottom-3 border-black bg-background rounded-2xl py-2 px-4 mt-4 flex justify-between'>
+                  <p className='text-2xl font-bold' style={{fontFamily: "DM Serif Display"}}> JUNE</p> 
                   <p>May 24</p>
                 </p>
-                <p className='border bottom-3 border-black bg-secondary rounded-2xl py-2 px-4 mt-4 flex justify-between'>
-                  <p className='text-2xl font-bold'>JUNE</p> 
+                <p className='border bottom-3 border-black bg-background rounded-2xl py-2 px-4 mt-4 flex justify-between'>
+                  <p className='text-2xl font-bold' style={{fontFamily: "DM Serif Display"}}>JUNE</p> 
                   <p>May 24</p>
                 </p>
               </div>
-              <div  className='col-span-2 w-full'>
+              <div  className='col-span-3 w-full'>
                 <div className='border bottom-3 border-black rounded-2xl py-2 px-4 mt-4 flex justify-between'>
                   <div>
                     <p>
                       4/05/2024 . 4/05/2024
                     </p>
-                    <p>
+                    <p style={{fontFamily: "DM Serif Display"}} className='text-[32px]'>
                       Hackathon Nighty Eight
                     </p>
                     <p>
                       The principal alcohol in Purell hand sanitizer (to take the most talked-about brand) is 70% ethanol 
                     </p>
                   </div>
-                  <div>
+                  <div className='flex flex-col justify-center'>
                     <p>
                       Celebrator
                     </p>
-                    <p>
+                    <p style={{fontFamily: "DM Serif Display"}} className='text-[24px]'>
                       Nighty Eight
                     </p>
                   </div>
@@ -139,39 +139,39 @@ const Home = () => {
                     <p>
                       4/05/2024 . 4/05/2024
                     </p>
-                    <p>
+                    <p style={{fontFamily: "DM Serif Display"}} className='text-[32px]'>
                       Hackathon Nighty Eight
                     </p>
                     <p>
                       The principal alcohol in Purell hand sanitizer (to take the most talked-about brand) is 70% ethanol 
                     </p>
                   </div>
-                  <div>
+                  <div className='flex flex-col justify-center'>
                     <p>
                       Celebrator
                     </p>
-                    <p>
+                    <p style={{fontFamily: "DM Serif Display"}} className='text-[24px]'>
                       Nighty Eight
                     </p>
                   </div>
                 </div>
-                <div className='border bottom-3 border-black rounded-2xl py-2 px-4 flex justify-between'>
+                <div className='border bottom-3 border-black rounded-2xl py-2 px-4 mt-4 flex justify-between'>
                   <div>
                     <p>
                       4/05/2024 . 4/05/2024
                     </p>
-                    <p>
+                    <p style={{fontFamily: "DM Serif Display"}} className='text-[32px]'>
                       Hackathon Nighty Eight
                     </p>
                     <p>
                       The principal alcohol in Purell hand sanitizer (to take the most talked-about brand) is 70% ethanol 
                     </p>
                   </div>
-                  <div>
+                  <div className='flex flex-col justify-center'>
                     <p>
                       Celebrator
                     </p>
-                    <p>
+                    <p style={{fontFamily: "DM Serif Display"}} className='text-[24px]'>
                       Nighty Eight
                     </p>
                   </div>
@@ -195,25 +195,20 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className='bg-primary text-center text-background py-5'>
-          <p className='text-[150px]'>
+        <div className='bg-primary text-center text-background py-12'>
+          <p className='text-[150px]'  style={{fontFamily: "DM Serif Display"}}>
             Don't Miss Out
           </p>
           <p>
             Secure your place at A2U today. Don’t miss the opportunity to join the industry at this landmark event in our great fashion capital.
           </p>
         </div>
-        <div className='bg-background text-center text-background'>
-          <p className='text-[150px]'>
-            Don't Miss Out
-          </p>
-          <p>
-            Secure your place at A2U today. Don’t miss the opportunity to join the industry at this landmark event in our great fashion capital.
-          </p>
+        <div className='bg-background'>
+          <img className='w-full' src="/banner.png" alt="" />
         </div>
-        <div className='bg-semiwhite flex px-[80px] py-10'>
+        <div className='bg-background flex px-[80px] py-10'>
           <div className='bg-primary text-background m-6 p-4 rounded-2xl'>
-            <p className='text-[50px]'>
+            <p className='text-[50px]' style={{fontFamily: "DM Serif Display"}}>
               Get Involed
             </p>
             <p>
@@ -224,8 +219,9 @@ const Home = () => {
             </button>
           </div>
           <div className='bg-semiwhite border-primary border m-6 p-4 rounded-2xl'>
-            <p className='text-[50px]'>
-              Get Involed
+            <p className='text-[50px]' style={{fontFamily: "DM Serif Display"}}>
+              
+              Keep In Touch
             </p>
             <p>
               If you’re interested in participating in A2U, whether as a valued partner, we’d be delighted to hear from you. Please contact us at INFO@CODES.FASHION

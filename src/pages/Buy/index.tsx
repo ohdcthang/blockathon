@@ -79,7 +79,7 @@ export const BuyTicket = () => {
 
           <div className='flex justify-between'>
           <div className='py-12'>
-            <div>
+            <div className='cursor-pointer'>
               <img src="/Frame 178.png" alt="" className='rounded-2xl' />
               <p className='text-2xl mt-4'>Vip</p>
               <p className='text-[32px]'>20 A2Y</p>
@@ -87,7 +87,7 @@ export const BuyTicket = () => {
             </div>
           </div>
           <div className='py-12'>
-            <div>
+            <div className='cursor-pointer'>
               <img src="/Frame 179.png" alt="" className='rounded-2xl' />
               <p className='text-2xl mt-4'>Premium</p>
               <p className='text-[32px]'>20 A2Y</p>
@@ -95,7 +95,7 @@ export const BuyTicket = () => {
             </div>
           </div>
           <div className='py-12'>
-            <div>
+            <div className='cursor-pointer'>
               <img src="/Frame 180.png" alt="" className='rounded-2xl' />
               <p className='text-2xl mt-4'>Standard</p>
               <p className='text-[32px]'>20 A2Y</p>
@@ -110,7 +110,7 @@ export const BuyTicket = () => {
 
           <div className='flex justify-between'>
           <div className='py-12'>
-            <div>
+            <div className='cursor-pointer'>
               <img src="/Frame 178.png" alt="" className='rounded-2xl' />
               <p className='text-2xl mt-4'>Vip</p>
               <p className='text-[32px]'>20 A2Y</p>
@@ -118,7 +118,7 @@ export const BuyTicket = () => {
             </div>
           </div>
           <div className='py-12'>
-            <div>
+            <div className='cursor-pointer'>
               <img src="/Frame 179.png" alt="" className='rounded-2xl' />
               <p className='text-2xl mt-4'>Premium</p>
               <p className='text-[32px]'>20 A2Y</p>
@@ -126,7 +126,7 @@ export const BuyTicket = () => {
             </div>
           </div>
           <div className='py-12'>
-            <div>
+            <div className='cursor-pointer'>
               <img src="/Frame 180.png" alt="" className='rounded-2xl' />
               <p className='text-2xl mt-4'>Standard</p>
               <p className='text-[32px]'>20 A2Y</p>

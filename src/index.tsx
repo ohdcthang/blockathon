@@ -18,6 +18,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import { BuyTicket } from './pages/Buy';
+import { TicketDetail } from './pages/TicketDetail';
 
 
 init({
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/buy-ticket",
     element: <BuyTicket />,
+  },
+  {
+    path: "/ticket",
+    element: <TicketDetail />,
   }
 ]);
 

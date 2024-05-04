@@ -5,7 +5,22 @@ import { useCreateAccount } from '../../hooks'
 import { setWallet } from '../../redux/walletSlice'
 import { RootState } from '../../store'
 import { convertWeiToBalance, truncate } from '../../utitls'
-
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+<Carousel>
+                <div>
+                    <img src="assets/1.jpeg" />
+                    <p className="legend">Legend 1</p>
+                </div>
+                <div>
+                    <img src="assets/2.jpeg" />
+                    <p className="legend">Legend 2</p>
+                </div>
+                <div>
+                    <img src="assets/3.jpeg" />
+                    <p className="legend">Legend 3</p>
+                </div>
+            </Carousel>
 export const Header = () => {
   const { logIn } = useCreateAccount()
   const dispatch = useDispatch()
@@ -26,7 +41,7 @@ export const Header = () => {
   const { address, email, balance } = useSelector((state:RootState) => state.wallet)
   return (
     <>
-     <header className='flex justify-between bg-background h-50 py-8 px-24 fixed top-0 right-0 left-0'>
+     <header className='flex justify-between bg-white h-50 py-8 px-24 fixed top-0 right-0 left-0'>
         <div>
           <img className='w-20' src="/A2U.png" alt="" />
         </div>

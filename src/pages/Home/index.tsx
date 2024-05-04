@@ -3,8 +3,10 @@ import { useCreateAccount } from '../../hooks'
 import { RootState } from '../../store'
 import { signOut } from '@ramper/viction'
 import { setWallet } from '../../redux/walletSlice'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { convertWeiToBalance, truncate } from '../../utitls'
 import { Header } from '../Header'
+import { Carousel } from 'react-responsive-carousel'
 
 const Home = () => {
   const { logIn } = useCreateAccount()
@@ -69,8 +71,8 @@ const Home = () => {
             <p>Participants</p>
           </div>
         </div>
-        <div className='bg-background py-2 px-24 '>
-          <p className='text-[200px] text-center'>SLIDER</p>
+        <div className='bg-background py-2 '>
+          <img src="Frame 180.png " className='w-full h-[500px]' />
         </div>
 
         <div className='bg-semiwhite  py-2 px-24 '>

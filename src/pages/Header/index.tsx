@@ -57,6 +57,14 @@ export const Header = () => {
         }}>
           <img className='w-20' src="/A2U.png" alt="" />
         </div>
+        <div className='text-right'>
+          <p>Matketplace</p>
+        </div>
+        <div className='text-right'>
+          <p>Matketplace</p>
+        </div>  <div className='text-right'>
+          <p>Matketplace</p>
+        </div>
         <div>
           {
             address ? (

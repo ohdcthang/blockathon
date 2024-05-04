@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import {
@@ -20,6 +19,7 @@ import Home from './pages/Home';
 import { BuyTicket } from './pages/Buy';
 import { TicketDetail } from './pages/TicketDetail';
 import { Profile } from './pages/Profile';
+import Checkout from './pages/Checkout';
 
 
 init({
@@ -57,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
   }
 ]);
 

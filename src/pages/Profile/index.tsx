@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import { convertBalanceToWei, convertWeiToBalance, getClient, truncate } from '../../utitls'
+import { convertBalanceToWei, convertWeiToBalance, getBalanceA2Y, getClient, truncate } from '../../utitls'
 import { Header } from '../Header'
 import { Tabs } from "flowbite-react";
 import { useContract } from '../../hooks/web3'
 import { toast } from 'react-toastify'
+import ToastProvider from '../../hooks/toastProvider'
+import { BuyFiatService } from './service'
+import { Tab } from '@material-tailwind/react'
 
    const data = [
     {
@@ -49,6 +52,29 @@ export const Profile = () => {
   console.log("🚀 ~ BuyTicket ~ nfts:", nfts)
   const {  getTokenList } = useContract()
 
+  let { address: addressRedux, balance } = useSelector(
+    (state: RootState) => state.wallet
+  );
+  let address = addressRedux
+    ? addressRedux
+    : JSON.parse(localStorage.getItem("account") as string)?.address;
+  const [amount, setAmount] = useState<string>("0");
+  const service = new BuyFiatService(address);
+  const handleAmount = (amount: string) => setAmount(amount);
+  const handleBuyFiat = async () => {
+    try {
+      if (Number(amount)) {
+        await service.serviceBuyFiat(address, Number(amount));
+      }
+      const balanceState = await getBalanceA2Y(address as string);
+      localStorage.setItem("account", JSON.stringify({ address, balanceState }));
+      ToastProvider("success", `Buy crypto success`);
+    } catch (error) {
+      console.log({ error });
+      ToastProvider("error", `Cannot buy crypto. Please try again`);
+    }
+  };
+
 
   useEffect(() => {
     const func = async () => {
@@ -59,7 +85,6 @@ export const Profile = () => {
 
   func()
   },[])
-  let { address, balance } = useSelector((state:RootState) => state.wallet)
 
   if(!address) address = (JSON.parse(localStorage.getItem('account') as string) && JSON.parse(localStorage.getItem('account') as string)!.address as string) || ''
   if(balance === '0') balance =(JSON.parse(localStorage.getItem('account') as string) && JSON.parse(localStorage.getItem('account') as string)!.balance as string) || ''
@@ -89,175 +114,269 @@ export const Profile = () => {
   }
   return (
     <div>
-        <Header />
+      <Header />
 
-        <div  style={{marginTop: '120px', marginBottom: '80px'}} >
-            <div className='flex bg-[#F3F3F3] px-24 py-12'>
-                <img src="/Rectangle 7.png" alt="" className='rounded-2xl w-32 h-32' />
-                <div className='ml-4'>
-                    <p className='text-[48px]'>{Number(convertWeiToBalance(balance, '18')).toFixed(0)} A2U</p>
-                    <p className='text-[24px]'>{truncate(address, {
-                                length: 5,
-                                separator: '****'
-                    })}</p>
-                </div>
-                {/* <div className='ml-4'>
-                </div> */}
-            </div>
-
-            <div className='px-24'>
-            <Tabs aria-label="Default tabs" style="default">
-      <Tabs.Item active title="Owned tickets" >
-      <div className=''>
-
-          <div className='grid grid-cols-3 justify-between'>
-          {nfts && (
-              nfts.map((item: any) => {
-                  console.log("🚀 ~ nfts.map ~ item:", item['ticketId'])
-                  return (
-                    <div className='py-12'>
-                      <div className='cursor-pointer'>
-                        <img src={ item['ticketId'] === '2' ? "/Frame 178.png": item['ticketId'] === '3' ? "/Frame 179.png"  :  "/Frame 180.png"} alt="" className='rounded-2xl' />
-                        <p className='text-2xl mt-4' style={{fontFamily: "DM Serif Display"}}>Hackathon Ninety Eight #{item['ticketId']}</p>
-                        <button  className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Listing</button>
-                      </div>
-                    </div>
-                  )
-              })
-            )}
+      <div style={{ marginTop: "120px", marginBottom: "80px" }}>
+        <div className="flex bg-[#F3F3F3] px-24 py-12">
+          <img
+            src="/Rectangle 7.png"
+            alt=""
+            className="rounded-2xl w-32 h-32" />
+          <div className="ml-4">
+            <p className="text-[48px]">
+              {Number(convertWeiToBalance(balance, "18")).toFixed(0)} A2U
+            </p>
+            <p className="text-[24px]">
+              {truncate(address, {
+                length: 5,
+                separator: "****",
+              })}
+            </p>
           </div>
 
-        </div>
-      </Tabs.Item>
-      <Tabs.Item title="History" >
-       <div className='flex w-[30%]'>
-        <select className=" mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                <option >Game</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-            <select className="mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                <option >Status</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-            <select className="mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                <option >Lastest</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-       </div>
-       <table className="table-auto w-full mt-4 text-left">
-  <thead>
-    <tr>
-      <th>TNX ID</th>
-      <th>EVENT</th>
-      <th>TICKET</th>
-      <th>FROM</th>
-      <th>TO</th>
-      <th>PRICE</th>
-      <th>TIME</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>8Hackathon Ninety Eight</td>
-      <td className='py-2'>_</td>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>+ 20 A2U</td>
-      <td className='py-2'>03/05/2024 
-        07:47 AM
-        </td>
-    </tr>
-    <tr>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>8Hackathon Ninety Eight</td>
-      <td className='py-2'>tandard #764</td>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>+ 20 A2U</td>
-      <td className='py-2'>03/05/2024 
-        07:47 AM
-        </td>
-    </tr> <tr>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>8Hackathon Ninety Eight</td>
-      <td className='py-2'>_</td>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>+ 20 A2U</td>
-      <td className='py-2'>03/05/2024 
-        07:47 AM
-        </td>
-    </tr> <tr>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>8Hackathon Ninety Eight</td>
-      <td className='py-2'>tandard #764</td>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>8868...4994</td>
-      <td className='py-2'>+ 20 A2U</td>
-      <td className='py-2'>03/05/2024 
-        07:47 AM
-        </td>
-    </tr>
-  </tbody>
-        </table>
-      </Tabs.Item>
-      <Tabs.Item title="Mission" >
-       <div className='grid grid-cols-12'>
-            <div className='col-span-4 co'>
-              <p className='text-[55px]'>Referral</p>
-              <p className='py-2'>Fill the referral to earn more token!</p>
-              <p className='py-2'>Your ID: 367O92</p>
-              <p className='py-2'>Do you have a Referral Code?</p>
-              <input type="text" className=' px-6 py-2 border-2' placeholder='Enter Referral Code' />
-              <button className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl' onClick={transfer}>Apply</button>
-            </div>
-            <div className='col-span-6'>
-            <p className='text-[55px]'>The_Delysium Event</p>
-            <p className='py-2'>Complete the task to earn more token!</p>
-            <p className='py-2'>Duration: 30/04 - 04/05/2024</p>
-            <div className='flex justify-between bg-blue-gray-200 rounded-2xl py-4 px-8 mt-4'>
-              <div className='flex items-center'>
-                <img src="/tw.png" alt="" />
-                <p className='px-2'>The_Delysium’s Twitter retweeters</p>
-              </div>
-              <button  onClick={transfer} className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl'>Connect Twitter</button>
-            </div>
-            <div className='flex justify-between bg-blue-gray-200 rounded-2xl py-4 px-8 mt-4'>
-              <div className='flex items-center'>
-                <img src="/tw.png" alt="" />
-                <p className='px-2'>The_Delysium’s Twitter retweeters</p>
-              </div>
-              <button  onClick={transfer} className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl'>Connect Twitter</button>
-            </div>
-            </div>
-       </div>
-      </Tabs.Item>
-      <Tabs.Item title="Loyalty Program">
-        Comming soon
-      </Tabs.Item>
-      
-    </Tabs>
-            </div>
+          {/* <div className='ml-4'>
+          </div> */}
         </div>
 
-        <footer className='fixed bottom-0 left-0 right-0 p-4 px-24  bg-semiwhite h-50 flex justify-between'>
+        <div className='px-24'>
+          <Tabs aria-label="Default tabs" style="default">
+            <Tabs.Item active title="Owned tickets">
+              <div className=''>
+
+                <div className='grid grid-cols-3 justify-between'>
+                  {nfts && (
+                    nfts.map((item: any) => {
+                      console.log("🚀 ~ nfts.map ~ item:", item['ticketId'])
+                      return (
+                        <div className='py-12'>
+                          <div className='cursor-pointer'>
+                            <img src={item['ticketId'] === '2' ? "/Frame 178.png" : item['ticketId'] === '3' ? "/Frame 179.png" : "/Frame 180.png"} alt="" className='rounded-2xl' />
+                            <p className='text-2xl mt-4' style={{ fontFamily: "DM Serif Display" }}>Hackathon Ninety Eight #{item['ticketId']}</p>
+                            <button className='text-sm bg-primary text-white rounded-2xl px-4 py-2'>Listing</button>
+                          </div>
+                        </div>
+                      )
+                    })
+                  )}
+                </div>
+
+              </div>
+            </Tabs.Item>
+            <Tabs.Item title="History">
+              <div className='flex w-[30%]'>
+                <select className=" mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                  <option>Game</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+                <select className="mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                  <option>Status</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+                <select className="mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                  <option>Lastest</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <table className="table-auto w-full mt-4 text-left">
+                <thead>
+                  <tr>
+                    <th>TNX ID</th>
+                    <th>EVENT</th>
+                    <th>TICKET</th>
+                    <th>FROM</th>
+                    <th>TO</th>
+                    <th>PRICE</th>
+                    <th>TIME</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>8Hackathon Ninety Eight</td>
+                    <td className='py-2'>_</td>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>+ 20 A2U</td>
+                    <td className='py-2'>03/05/2024
+                      07:47 AM
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>8Hackathon Ninety Eight</td>
+                    <td className='py-2'>tandard #764</td>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>+ 20 A2U</td>
+                    <td className='py-2'>03/05/2024
+                      07:47 AM
+                    </td>
+                  </tr> <tr>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>8Hackathon Ninety Eight</td>
+                    <td className='py-2'>_</td>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>+ 20 A2U</td>
+                    <td className='py-2'>03/05/2024
+                      07:47 AM
+                    </td>
+                  </tr> <tr>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>8Hackathon Ninety Eight</td>
+                    <td className='py-2'>tandard #764</td>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>8868...4994</td>
+                    <td className='py-2'>+ 20 A2U</td>
+                    <td className='py-2'>03/05/2024
+                      07:47 AM
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </Tabs.Item>
+            <Tabs.Item title="Mission">
+              <div className='grid grid-cols-12'>
+                <div className='col-span-4 co'>
+                  <p className='text-[55px]'>Referral</p>
+                  <p className='py-2'>Fill the referral to earn more token!</p>
+                  <p className='py-2'>Your ID: 367O92</p>
+                  <p className='py-2'>Do you have a Referral Code?</p>
+                  <input type="text" className=' px-6 py-2 border-2' placeholder='Enter Referral Code' />
+                  <button className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl' onClick={transfer}>Apply</button>
+                </div>
+                <div className='col-span-6'>
+                  <p className='text-[55px]'>The_Delysium Event</p>
+                  <p className='py-2'>Complete the task to earn more token!</p>
+                  <p className='py-2'>Duration: 30/04 - 04/05/2024</p>
+                  <div className='flex justify-between bg-blue-gray-200 rounded-2xl py-4 px-8 mt-4'>
+                    <div className='flex items-center'>
+                      <img src="/tw.png" alt="" />
+                      <p className='px-2'>The_Delysium’s Twitter retweeters</p>
+                    </div>
+                    <button onClick={transfer} className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl'>Connect Twitter</button>
+                  </div>
+                  <div className='flex justify-between bg-blue-gray-200 rounded-2xl py-4 px-8 mt-4'>
+                    <div className='flex items-center'>
+                      <img src="/tw.png" alt="" />
+                      <p className='px-2'>The_Delysium’s Twitter retweeters</p>
+                    </div>
+                    <button onClick={transfer} className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl'>Connect Twitter</button>
+                  </div>
+                </div>
+              </div>
+            </Tabs.Item>
+            <Tabs.Item title="Loyalty Program">
+              Comming soon
+            </Tabs.Item>
+
+          </Tabs>
+        </div>
+      </div>
+
+      <div className="px-24">
+        <Tabs aria-label="Default tabs" style="default">
+          <Tabs.Item active title="Owned tickets">
+            <div className="">
+              <div className="flex justify-between">
+                <div className="py-12">
+                  <div className="cursor-pointer">
+                    <img
+                      src="/Frame 178.png"
+                      alt=""
+                      className="rounded-2xl" />
+                    <p className="text-2xl mt-4">Standard #764</p>
+                    <button className="text-sm bg-primary text-white rounded-2xl px-4 py-2 my-4">
+                      Get Ticket
+                    </button>
+                  </div>
+                </div>
+                <div className="py-12">
+                  <div className="cursor-pointer">
+                    <img
+                      src="/Frame 179.png"
+                      alt=""
+                      className="rounded-2xl" />
+                    <p className="text-2xl mt-4">Standard #764</p>
+                    <button className="text-sm bg-primary text-white rounded-2xl px-4 py-2 my-4">
+                      Get Ticket
+                    </button>
+                  </div>
+                </div>
+                <div className="py-12">
+                  <div className="cursor-pointer">
+                    <img
+                      src="/Frame 180.png"
+                      alt=""
+                      className="rounded-2xl" />
+                    <p className="text-2xl mt-4">Standard #764</p>
+                    <button className="text-sm bg-primary text-white rounded-2xl px-4 py-2 my-4">
+                      Get Ticket
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Tabs.Item>
+         
+          {/* <Tabs.Item title='Buy Token'>
+            
+          </Tabs.Item> */}
+          <Tabs.Item title="Mission">
+            <div>
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Buy Crypto
+              </label>
+              <input
+                id="fiat"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="100"
+                required
+                onChange={(e) => handleAmount(e.target.value)}
+                type="number"
+                value={amount} />
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Token Receive: {service.estimateToken(Number(amount))}
+              </label>
+              <button
+                className="bg-primary text-white py-2 px-16 rounded-2xl"
+                onClick={handleBuyFiat}
+              >
+                Buy Token
+              </button>
+            </div>
+          </Tabs.Item>
+          <Tabs.Item title="Loyalty Program">
+            This is{" "}
+            <span className="font-medium text-gray-800 dark:text-white">
+              Settings tab's associated content
+            </span>
+            . Clicking another tab will toggle the visibility of this one for
+            the next. The tab JavaScript swaps classes to control the content
+            visibility and styling.
+          </Tabs.Item>
+        </Tabs>
+      </div>
+    <footer className="fixed bottom-0 left-0 right-0 p-4 px-24  bg-semiwhite h-50 flex justify-between">
         <div>
-          <img className='w-20' src="/A2U.png" alt="" />
+          <img className="w-20" src="/A2U.png" alt="" />
           <p>
-            "Art To You" is a place where you can fulfill your dreams related to art.
+            "Art To You" is a place where you can fulfill your dreams related to
+            art.
           </p>
         </div>
         <div>
-          <button className='bg-primary text-white py-2 px-16 rounded-2xl'>Get ticket</button>
+          <button className="bg-primary text-white py-2 px-16 rounded-2xl">
+            Get ticket
+          </button>
         </div>
       </footer>
     </div>
-  )
-}
+  );
+};

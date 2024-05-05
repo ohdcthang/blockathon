@@ -32,6 +32,7 @@ import { MetaMaskWalletAdapter } from "@coin98-com/wallet-adapter-metamask";
 import { evmChains, WalletModalC98 } from "@coin98-com/wallet-adapter-react-ui"
 import '@coin98-com/wallet-adapter-react-ui/styles.css';
 import { RamperWalletAdapter } from '@coin98-com/wallet-adapter-ramper';
+import { BuyCrypto } from './pages/BuyCrypto';
 init({
   appName: 'Viction Test App',
   authProviders: [
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: "/buy-ticket",
     element: <BuyTicket />,
+  },
+  {
+    path: "/buy-token",
+    element: <BuyCrypto />,
   },
   {
     path: "/ticket",
@@ -102,6 +107,7 @@ root.render(
       <RouterProvider router={router} />
       <ToastContainer />
       <Coin98AdapterModal />
+      <ToastContainer limit={3} />
     </Provider>
     </Coin98AdapterProvider>
 );

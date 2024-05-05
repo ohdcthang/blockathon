@@ -74,6 +74,11 @@ export const Header = () => {
         }}>
           <p>Profile</p>
         </div>
+        <div className='text-right cursor-pointer font-semibold' onClick={() => {
+          navigate('/buy-token')
+        }}>
+          <p>Buy token</p>
+        </div>
         {/* <div className='text-right cursor-pointer'>
           <p>Matketplace</p>
         </div>  <div className='text-right cursor-pointer'>

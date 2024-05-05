@@ -29,16 +29,16 @@ export const BuyCrypto = () => {
       if (Number(amount)) {
         await service.serviceBuyFiat(address, Number(amount));
       }
-      const balanceState = await getBalanceA2Y(address as string);
-      localStorage.setItem(
-        "account",
-        JSON.stringify({ address, balanceState })
-      );
-      dispatch(setWallet({
-        address,
-        email,
-        balance: balanceState
-     }))
+    //   const balanceState = await getBalanceA2Y(address as string);
+    //   localStorage.setItem(
+    //     "account",
+    //     JSON.stringify({ address, balanceState })
+    //   );
+    //   dispatch(setWallet({
+    //     address,
+    //     email,
+    //     balance: balanceState
+    //  }))
      toast('Buy crypto success',{
       type: 'success'
      })

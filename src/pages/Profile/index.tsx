@@ -87,12 +87,12 @@ export const Profile = () => {
       const { rawTransaction: signedTransaction } = await client.eth.accounts.signTransaction(rawTransaction as any, "0xf30bef23c60356c818af062eae5305a5a7ad2bd4d7d0d4bc355d490581db49aa")
 
        await client.eth.sendSignedTransaction(signedTransaction as string)
-      toast('Transaction success. Deposit 10 Y2U',{
+      toast('Transaction success. Deposit 10 A2U',{
         type: 'success'
       })
 
      }catch(e) {
-      toast('Transaction success. Deposit 10 Y2U',{
+      toast('Transaction success. Deposit 10 A2U',{
         type: 'success'
       })
      }
@@ -154,21 +154,12 @@ export const Profile = () => {
               <div className='flex w-[30%]'>
                 <select className=" mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                   <option>Game</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
                 </select>
                 <select className="mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                   <option>Status</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
                 </select>
                 <select className="mx-2 border py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                   <option>Lastest</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
                 </select>
               </div>
               <table className="table-auto w-full mt-4 text-left">
@@ -186,7 +177,7 @@ export const Profile = () => {
                 <tbody>
                   <tr>
                     <td className='py-2'>8868...4994</td>
-                    <td className='py-2'>8Hackathon Ninety Eight</td>
+                    <td className='py-2'>Hackathon Ninety Eight</td>
                     <td className='py-2'>_</td>
                     <td className='py-2'>8868...4994</td>
                     <td className='py-2'>8868...4994</td>
@@ -197,8 +188,8 @@ export const Profile = () => {
                   </tr>
                   <tr>
                     <td className='py-2'>8868...4994</td>
-                    <td className='py-2'>8Hackathon Ninety Eight</td>
-                    <td className='py-2'>tandard #764</td>
+                    <td className='py-2'>Hackathon Ninety Eight</td>
+                    <td className='py-2'>Hackathon Ninety Eight #764</td>
                     <td className='py-2'>8868...4994</td>
                     <td className='py-2'>8868...4994</td>
                     <td className='py-2'>+ 20 A2U</td>
@@ -207,7 +198,7 @@ export const Profile = () => {
                     </td>
                   </tr> <tr>
                     <td className='py-2'>8868...4994</td>
-                    <td className='py-2'>8Hackathon Ninety Eight</td>
+                    <td className='py-2'>Hackathon Ninety Eight</td>
                     <td className='py-2'>_</td>
                     <td className='py-2'>8868...4994</td>
                     <td className='py-2'>8868...4994</td>
@@ -217,8 +208,8 @@ export const Profile = () => {
                     </td>
                   </tr> <tr>
                     <td className='py-2'>8868...4994</td>
-                    <td className='py-2'>8Hackathon Ninety Eight</td>
-                    <td className='py-2'>tandard #764</td>
+                    <td className='py-2'>Hackathon Ninety Eight</td>
+                    <td className='py-2'>Hackathon Ninety Eight #764</td>
                     <td className='py-2'>8868...4994</td>
                     <td className='py-2'>8868...4994</td>
                     <td className='py-2'>+ 20 A2U</td>

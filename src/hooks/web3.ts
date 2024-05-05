@@ -85,7 +85,7 @@ export const useContract =  () => {
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 body: new URLSearchParams({
-                    'gmail': 'quoc1340811@gmail.com',
+                    'gmail': 'hoducthangtn2nhvt@gmail.com',
                 })
               })
 

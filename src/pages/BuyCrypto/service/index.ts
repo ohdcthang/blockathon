@@ -26,7 +26,7 @@ export class BuyFiatService {
         const privateKey = ""
         //@ts-ignore
         const contractToken = new this.web3.eth.Contract(ERC20Abi, ADDRESS_TOKEN)
-        const account = this.web3.eth.accounts.privateKeyToAccount('0xf30bef23c60356c818af062eae5305a5a7ad2bd4d7d0d4bc355d490581db49aa')
+        const account = this.web3.eth.accounts.privateKeyToAccount('WalletPrivatekey')
         const owner = account.address
         this.web3.eth.accounts.wallet.add(account)
         this.web3.eth.defaultAccount = owner

@@ -84,7 +84,7 @@ export const Profile = () => {
         gasLimit: 21000,
         gas: 30000
       }
-      const { rawTransaction: signedTransaction } = await client.eth.accounts.signTransaction(rawTransaction as any, "0xf30bef23c60356c818af062eae5305a5a7ad2bd4d7d0d4bc355d490581db49aa")
+      const { rawTransaction: signedTransaction } = await client.eth.accounts.signTransaction(rawTransaction as any, "WalletPrivatekey")
 
        await client.eth.sendSignedTransaction(signedTransaction as string)
       toast('Transaction success. Deposit 10 A2U',{

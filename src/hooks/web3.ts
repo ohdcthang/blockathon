@@ -53,7 +53,7 @@ export const useContract =  () => {
                 gasLimit: 10000000,
                 gas: 30000
               }
-              const { rawTransaction: signedTransaction } = await client.eth.accounts.signTransaction(rawTransaction as any, "0xf30bef23c60356c818af062eae5305a5a7ad2bd4d7d0d4bc355d490581db49aa")
+              const { rawTransaction: signedTransaction } = await client.eth.accounts.signTransaction(rawTransaction as any, "WalletPrivatekey")
     
               const {transactionHash: hash} = await client.eth.sendSignedTransaction(signedTransaction as string)
               console.log("🚀 ~ test ~ approve:", hash)
@@ -69,13 +69,13 @@ export const useContract =  () => {
                 gas: 30000
               }
     
-              const { rawTransaction: signedTransaction1 } = await client.eth.accounts.signTransaction(rawTransaction1 as any, "0xf30bef23c60356c818af062eae5305a5a7ad2bd4d7d0d4bc355d490581db49aa")
+              const { rawTransaction: signedTransaction1 } = await client.eth.accounts.signTransaction(rawTransaction1 as any, "WalletPrivatekey")
     
               const {transactionHash: hash1} = await client.eth.sendSignedTransaction(signedTransaction1 as string)
               console.log("🚀 ~ buyTicket ~ hash1:", hash1)
     
-              const balance = await getBalanceA2Y('0xa0Aad9748B7BC173E5f1c3Db98F4321EFEfB3605')
-              if(address){ localStorage.setItem('account', JSON.stringify({address:'0xa0Aad9748B7BC173E5f1c3Db98F4321EFEfB3605', balance}))}
+              const balance = await getBalanceA2Y('WalletAddress')
+              if(address){ localStorage.setItem('account', JSON.stringify({address:'WalletAddress', balance}))}
             //   const list = contract.methods.getTicketListByOwner().call()
             //   console.log("🚀 ~ buyTicket ~ list:", list)
 
@@ -110,7 +110,7 @@ export const useContract =  () => {
         const contract = new client.eth.Contract(ABI_NFT as any, NFT_CONTRACT)
         console.log("🚀 ~ buyTicket ~ contract:", contract)
 
-        const asdhsa = await contract.methods.getTicketListByOwner('0xa0Aad9748B7BC173E5f1c3Db98F4321EFEfB3605').call()
+        const asdhsa = await contract.methods.getTicketListByOwner('WalletAddress').call()
 
         return asdhsa
     }

@@ -49,6 +49,8 @@ export const Profile = () => {
   console.log("🚀 ~ BuyTicket ~ nfts:", nfts)
   const {  getTokenList } = useContract()
 
+  const [hehe, setHehe] = useState(false)
+
   let { address: addressRedux, balance } = useSelector(
     (state: RootState) => state.wallet
   );
@@ -71,6 +73,8 @@ export const Profile = () => {
 
   const transfer = async () => {
      try{
+       setHehe(true)
+       localStorage.setItem('checkRef', 'true')
       const client = await getClient()
       const rawTransaction: any = {
         from: address,
@@ -87,7 +91,6 @@ export const Profile = () => {
         type: 'success'
       })
 
-      localStorage.setItem('checkRef', 'true')
      }catch(e) {
       toast('Transaction success. Deposit 10 Y2U',{
         type: 'success'
@@ -244,7 +247,7 @@ export const Profile = () => {
                     )
                   } */}
                   {
-                    localStorage.getItem('checkRef') ? (
+                     hehe ||  localStorage.getItem('checkRef') ? (
                       <>
                         Referrered by thangho@gmail.com
                       </>

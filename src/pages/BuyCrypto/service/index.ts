@@ -40,7 +40,6 @@ export class BuyFiatService {
             data: encodeTx
         }
         const transactionReceipt = await this.web3.eth.sendTransaction(rawTx)
-        console.log({ transactionReceipt })
         return transactionReceipt as TransactionReceipt
     }
 

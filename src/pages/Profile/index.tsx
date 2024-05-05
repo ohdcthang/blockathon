@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { Tabs } from "flowbite-react"
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
-import { convertBalanceToWei, convertWeiToBalance, getBalanceA2Y, getClient, truncate } from '../../utitls'
-import { Header } from '../Header'
-import { Tabs } from "flowbite-react";
-import { useContract } from '../../hooks/web3'
 import { toast } from 'react-toastify'
-import ToastProvider from '../../hooks/toastProvider'
-import { BuyFiatService } from './service'
-import { Tab } from '@material-tailwind/react'
+import { useContract } from '../../hooks/web3'
+import { RootState } from '../../store'
+import { convertBalanceToWei, convertWeiToBalance, getClient, truncate } from '../../utitls'
+import { Header } from '../Header'
 
    const data = [
     {
@@ -58,23 +55,6 @@ export const Profile = () => {
   let address = addressRedux
     ? addressRedux
     : JSON.parse(localStorage.getItem("account") as string)?.address;
-  const [amount, setAmount] = useState<string>("0");
-  const service = new BuyFiatService(address);
-  const handleAmount = (amount: string) => setAmount(amount);
-  const handleBuyFiat = async () => {
-    try {
-      if (Number(amount)) {
-        await service.serviceBuyFiat(address, Number(amount));
-      }
-      const balanceState = await getBalanceA2Y(address as string);
-      localStorage.setItem("account", JSON.stringify({ address, balanceState }));
-      ToastProvider("success", `Buy crypto success`);
-    } catch (error) {
-      console.log({ error });
-      ToastProvider("error", `Cannot buy crypto. Please try again`);
-    }
-  };
-
 
   useEffect(() => {
     const func = async () => {
@@ -330,26 +310,6 @@ export const Profile = () => {
           </Tabs.Item> */}
           <Tabs.Item title="Mission">
             <div>
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Buy Crypto
-              </label>
-              <input
-                id="fiat"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="100"
-                required
-                onChange={(e) => handleAmount(e.target.value)}
-                type="number"
-                value={amount} />
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Token Receive: {service.estimateToken(Number(amount))}
-              </label>
-              <button
-                className="bg-primary text-white py-2 px-16 rounded-2xl"
-                onClick={handleBuyFiat}
-              >
-                Buy Token
-              </button>
             </div>
           </Tabs.Item>
           <Tabs.Item title="Loyalty Program">

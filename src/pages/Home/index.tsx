@@ -7,10 +7,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { convertWeiToBalance, truncate } from '../../utitls'
 import { Header } from '../Header'
 import { Carousel } from 'react-responsive-carousel'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const { logIn } = useCreateAccount()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const logOut = async () => {
      signOut()
@@ -113,13 +115,14 @@ const Home = () => {
                 </p>
               </div>
               <div  className='col-span-3 w-full'>
-                <div className='border bottom-3 border-black rounded-2xl py-2 px-4 mt-4 flex justify-between'>
+                                <div className='border bottom-3 border-black rounded-2xl py-2 px-4 mt-4 flex justify-between cursor-pointer 'onClick={() => navigate('buy-ticket')}>
+
                   <div>
                     <p>
                       4/05/2024 . 4/05/2024
                     </p>
                     <p style={{fontFamily: "DM Serif Display"}} className='text-[32px]'>
-                      Hackathon Nighty Eight
+                      Hackathon Ninety Eight
                     </p>
                     <p>
                       The principal alcohol in Purell hand sanitizer (to take the most talked-about brand) is 70% ethanol 
@@ -130,17 +133,18 @@ const Home = () => {
                       Celebrator
                     </p>
                     <p style={{fontFamily: "DM Serif Display"}} className='text-[24px]'>
-                      Nighty Eight
+                      Ninety Eight
                     </p>
                   </div>
                 </div>
-                <div className='border bottom-3 border-black rounded-2xl py-2 px-4 mt-4 flex justify-between'>
+                    <div className='border bottom-3 border-black rounded-2xl py-2 px-4 mt-4 flex justify-between cursor-pointer 'onClick={() => navigate('buy-ticket')}>
+
                   <div>
                     <p>
                       4/05/2024 . 4/05/2024
                     </p>
                     <p style={{fontFamily: "DM Serif Display"}} className='text-[32px]'>
-                      Hackathon Nighty Eight
+                      Hackathon Ninety Eight
                     </p>
                     <p>
                       The principal alcohol in Purell hand sanitizer (to take the most talked-about brand) is 70% ethanol 
@@ -151,17 +155,18 @@ const Home = () => {
                       Celebrator
                     </p>
                     <p style={{fontFamily: "DM Serif Display"}} className='text-[24px]'>
-                      Nighty Eight
+                      Ninety Eight
                     </p>
                   </div>
                 </div>
-                <div className='border bottom-3 border-black rounded-2xl py-2 px-4 mt-4 flex justify-between'>
+                                <div className='border bottom-3 border-black rounded-2xl py-2 px-4 mt-4 flex justify-between cursor-pointer 'onClick={() => navigate('buy-ticket')}>
+
                   <div>
                     <p>
                       4/05/2024 . 4/05/2024
                     </p>
                     <p style={{fontFamily: "DM Serif Display"}} className='text-[32px]'>
-                      Hackathon Nighty Eight
+                      Hackathon Ninety Eight
                     </p>
                     <p>
                       The principal alcohol in Purell hand sanitizer (to take the most talked-about brand) is 70% ethanol 
@@ -172,7 +177,7 @@ const Home = () => {
                       Celebrator
                     </p>
                     <p style={{fontFamily: "DM Serif Display"}} className='text-[24px]'>
-                      Nighty Eight
+                      Ninety Eight
                     </p>
                   </div>
                 </div>
@@ -220,8 +225,7 @@ const Home = () => {
           </div>
           <div className='bg-semiwhite border-primary border m-6 p-4 rounded-2xl'>
             <p className='text-[50px]' style={{fontFamily: "DM Serif Display"}}>
-              
-              Keep In Touch
+             Keep In touch
             </p>
             <p>
               If you’re interested in participating in A2U, whether as a valued partner, we’d be delighted to hear from you. Please contact us at INFO@CODES.FASHION

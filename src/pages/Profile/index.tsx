@@ -106,12 +106,17 @@ export const Profile = () => {
       toast('Transaction success. Deposit 10 Y2U',{
         type: 'success'
       })
+
+      localStorage.setItem('checkRef', 'true')
      }catch(e) {
       toast('Transaction success. Deposit 10 Y2U',{
         type: 'success'
       })
      }
   }
+
+  
+
   return (
     <div>
       <Header />
@@ -247,9 +252,30 @@ export const Profile = () => {
                   <p className='text-[55px]'>Referral</p>
                   <p className='py-2'>Fill the referral to earn more token!</p>
                   <p className='py-2'>Your ID: 367O92</p>
-                  <p className='py-2'>Do you have a Referral Code?</p>
-                  <input type="text" className=' px-6 py-2 border-2' placeholder='Enter Referral Code' />
-                  <button className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl' onClick={transfer}>Apply</button>
+                  {/* {
+                    localStorage.getItem('checkRef') ? (
+
+                    ): (
+                      <div>
+                        <p className='py-2'>Do you have a Referral Code?</p>
+                        <input type="text" className=' px-6 py-2 border-2' placeholder='Enter Referral Code' />
+                        <button className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl' onClick={transfer}>Apply</button>
+                      </div>
+                    )
+                  } */}
+                  {
+                    localStorage.getItem('checkRef') ? (
+                      <>
+                        Referrered by thangho@gmail.com
+                      </>
+                      ): (
+                        <>
+                         <p className='py-2'>Do you have a Referral Code?</p>
+                        <input type="text" className=' px-6 py-2 border-2' placeholder='Enter Referral Code' />
+                        <button className='bg-primary text-white  px-6 py-2 ml-2 rounded-2xl' onClick={transfer}>Apply</button>
+                        </>
+                    )
+                  }
                 </div>
                 <div className='col-span-6'>
                   <p className='text-[55px]'>The_Delysium Event</p>
